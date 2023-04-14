@@ -1,5 +1,5 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 const db = require('./config/database');
 const app = express();
 
@@ -24,7 +24,7 @@ app.use('/places/deleta', require('./routes/cadastro'));
 app.use('/places/atualiza', require('./routes/cadastro'));
 
 // Iniciar o servidor
-app.listen(3000, () => console.log('Servidor iniciado na porta 3000'));
+app.listen(3535, () => console.log('Servidor iniciado na porta 3000'));
 /*
 //outra forma de subir o server
 const port = process.env.PORT || 3000;
