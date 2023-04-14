@@ -33,9 +33,10 @@ const User = db.define('users', {
     }
   });
 
-//cria tabela cadastros caso não exista 
+//cria tabela users caso não exista 
 User.sync({ alter:true })
   .then(() => console.log('Tabela users criada com sucesso'))
   .catch(err => console.error('Erro ao criar tabela de users:', err));
 
-  module.exports = User;
+console.log("passou por aqui @@@@@@@@@ USER")
+module.exports = User;

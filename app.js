@@ -23,8 +23,13 @@ app.use('/places/deleta', require('./routes/cadastro'));
 // Rota de atualização
 app.use('/places/atualiza', require('./routes/cadastro'));
 
+//user
+// Rota de cadastroUser
+app.use('/places/user', require('./routes/user'));
+
+//db.sync({alter: true})
 // Iniciar o servidor
-app.listen(3535, () => console.log('Servidor iniciado na porta 3000'));
+app.listen(3535, () => console.log('Servidor iniciado na porta 3535'));
 /*
 //outra forma de subir o server
 const port = process.env.PORT || 3000;
