@@ -26,6 +26,8 @@ app.use('/places/atualiza', require('./routes/cadastro'));
 //user
 // Rota de cadastroUser
 app.use('/places/user', require('./routes/user'));
+// Loga User
+app.use('/places/sessions', require('./controllers/sessions'));
 
 //db.sync({alter: true})
 // Iniciar o servidor

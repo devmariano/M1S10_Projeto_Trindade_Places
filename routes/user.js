@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
+const jwt = require('jsonwebtoken');
 
 //Rota para criar um cadastro
 router.post('/', (req, res) => {
@@ -14,6 +15,30 @@ router.post('/', (req, res) => {
     res.status(500).json({ message: 'Erro ao criar user', error: err });
   });
 });
+
+router.post('/sessions', async (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const user = await User.findOne({ where: { username } });
+
+    if (!user) {
+      return res.status(401).json({ message: 'Usuário não encontrado' });
+    }
+
+    if (!(await user.checkPassword(password))) {
+      return res.status(401).json({ message: 'Senha incorreta' });
+    }
+
+    const token = jwt.sign({ id: user.id }, 'segredo', { expiresIn: '1d' });
+
+    return res.json({ user, token });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: 'Erro ao fazer login' });
+  }
+});
+
 /*
 // Rota para pesquisar um cadastro pelo ID
 router.get('/:id', (req, res) => {

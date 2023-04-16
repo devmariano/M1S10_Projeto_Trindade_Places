@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const bcrypt = require('bcrypt');
 const db = require('../config/database');
 
 const User = db.define('users', {
@@ -28,7 +29,19 @@ const User = db.define('users', {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: [8, 100]
+        len: [4, 15]
+      }
+    }
+  },{
+    hooks: {
+      beforeCreate: async (user) => {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    },
+    instanceMethods: {
+      checkPassword: function(password) {
+        return bcrypt.compare(password, this.password);
       }
     }
   });
