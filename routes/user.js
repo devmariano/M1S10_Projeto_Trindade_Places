@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const jwt = require('jsonwebtoken');
+const validateNewUser = require('../middlewares/validateNewUser');
 
 //Rota para criar um cadastro
-router.post('/', (req, res) => {
+router.post('/', validateNewUser, (req, res) => {
   const { name, email, username, password } = req.body;
   User.create({ name, email, username, password})
   .then(user => {

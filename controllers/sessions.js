@@ -19,7 +19,7 @@ const jwt = require('jsonwebtoken');
         
         const passwordIsValid = await bcrypt.compare(request.body.password, userInDatabase.password)
         
-        // verifica se a senha está correta 
+        // verifica se a senha está correta  
         if (!passwordIsValid) {
             return response.status(404).json({ message: 'Crendeciais incorreta[password]' })
             console.log('pass ok')

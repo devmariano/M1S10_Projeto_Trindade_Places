@@ -1,3 +1,6 @@
+//a partir daqui o projeto começa a entender variaveis de ambiente, devem ser delcaradas sempre em MAIUSCULO e deve-se criar na raiz do projet oo arquivo .env
+require('dotenv').config()
+
 const express = require('express');
 //const bodyParser = require('body-parser');
 const db = require('./config/database');
