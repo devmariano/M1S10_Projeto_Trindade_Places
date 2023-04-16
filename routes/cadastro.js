@@ -2,8 +2,10 @@ const express = require('express');
 const router = express.Router();
 const Cadastro = require('../models/cadastro');
 
+const validateToken = require('../middlewares/validateToken');
+
 //Rota para criar um cadastro
-router.post('/', (req, res) => {
+router.post('/', validateToken, (req, res) => {
   const { name, telephone, opening_hours, description, latitude, longitude } = req.body;
   Cadastro.create({ name, telephone, opening_hours, description, latitude, longitude})
   .then(cadastro => {
@@ -16,7 +18,7 @@ router.post('/', (req, res) => {
 });
 
 // Rota para pesquisar um cadastro pelo ID
-router.get('/:id', (req, res) => {
+router.get('/:id',  (req, res) => {
     const id = req.params.id;
     Cadastro.findByPk(id)
       .then(cadastro => {
@@ -50,7 +52,7 @@ router.get('/', (req, res) => {
   });
 
 // Rota para excluir um cadastro pelo ID
-router.delete('/:id', (req, res) => {
+router.delete('/:id', validateToken, (req, res) => {
     const id = req.params.id;
     Cadastro.findByPk(id)
       .then(cadastro => {
@@ -74,7 +76,7 @@ router.delete('/:id', (req, res) => {
   });
 
 // Rota para atualizar um cadastro pelo ID
-router.put('/:id', (req, res) => {
+router.put('/:id', validateToken, (req, res) => {
     const id = req.params.id;
     const { name, telephone, opening_hours, description, latitude, longitude } = req.body;
     Cadastro.findByPk(id)
