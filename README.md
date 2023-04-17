@@ -61,7 +61,39 @@ O projeto ainda está em desenvolvimento e as próximas atualizações serão vo
 
   A rota PUT pode ser implementada com o path /places/:id, onde o parâmetro :id representa o identificador único da instituição. Ao receber uma requisição PUT com esse path, a API deve verificar se o identificador corresponde a uma instituição válida na base de dados e, em caso positivo, permitir a atualização dos campos definidos.
 
-  A rota permitirá atualiza todos os campos cadastrados, exceto o ID
+  A rota permitirá atualizar todos os campos cadastrados, exceto o ID
+  
+- [x] Tarefa 6: Após as implementações anteriores, é necessário criar um novo modelo Sequelize chamado "User" para representar um usuário válido no sistema. Para isso, é importante definir corretamente seus campos para que possa ser utilizado adequadamente. Os campos que devem ser definidos são:
+
+id: um número que serve como identificador único para o usuário.
+name: uma string que representa o nome completo do usuário.
+email: uma string que representa o endereço de email do usuário. Deve ser única e válida.
+username: uma string que representa o nome de usuário do usuário. Deve ser única.
+password: uma string que representa a senha do usuário. Deve ter no mínimo 8 caracteres.
+
+Ao criar o modelo "User" com esses campos definidos corretamente, será possível utilizá-lo para representar usuários válidos no sistema e armazenar suas informações de maneira segura e eficiente.
+
+- [x] Tarefa 7: Após criar o modelo User no exercício anterior, é necessário implementar uma rota do tipo POST com o path "/users" que receba valores por meio de BODY params.
+
+- [x] Tarefa 8: Após criar a rota POST no exercício anterior, é necessário implementar uma rota do tipo POST com o path "/sessions" que receba um username e password.
+
+Na rota POST com o path "/sessions", devem ser recebidos um username e password como parâmetros da requisição. Em seguida, a aplicação deve verificar se o usuário existe no banco de dados. Se o usuário existir, deve ser gerado um token JWT (JSON Web Token) contendo o id do usuário e injetado no corpo da resposta.
+
+É importante garantir que o token seja gerado com segurança, seguindo as boas práticas de codificação e criptografia. Além disso, é importante que as informações sejam retornadas de forma clara e organizada para que a integração com outros sistemas ou aplicações seja facilitada.
+
+- [x] Tarefa 9: Para garantir a segurança da aplicação, implemente um middleware que valide se o token recebido é válido. Esse middleware será responsável por verificar se o token foi gerado corretamente e se ainda está válido.
+
+Além disso, é importante definir que todas as rotas da aplicação, exceto a rota raiz e a rota de sessão, devem ser privadas. Isso significa que apenas usuários autenticados, ou seja, aqueles que possuem um token válido, terão acesso a essas rotas.
+
+- [x] Tarefa 10: Para tornar a estrutura do projeto mais organizada e fácil de gerenciar, é importante realizar algumas ações importantes.
+
+Separar os controllers em arquivos diferentes, para facilitar o gerenciamento do código;
+Criar middlewares de validação utilizando a biblioteca YUP, garantindo que as informações enviadas pelo cliente estejam corretas e possam ser processadas pela aplicação;
+Implementar variáveis de ambiente para dados sensíveis, como senhas, chaves de API e tokens, para evitar que esses dados sejam expostos acidentalmente e aumentar a segurança da aplicação;
+Agrupar as rotas em arquivos diferentes, de acordo com o objetivo ou funcionalidade específica, para facilitar o gerenciamento do código e manter a organização do projeto de forma clara e concisa.
+Essas ações são simples de implementar, mas podem fazer uma grande diferença na estrutura do projeto, tornando-o mais seguro, organizado e fácil de gerenciar. Além disso, podem ajudar a reduzir o tempo de desenvolvimento, aumentar a produtividade e garantir um produto final de alta qualidade e eficiência.
+
+- [ ] Tarefa 11: Documente todas as rotas do projeto utilizando Swagger. (ainda não realizado)
 
 ## 💻 Pré-requisitos
 
